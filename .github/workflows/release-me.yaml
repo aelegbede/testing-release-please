@@ -19,7 +19,7 @@ jobs:
           path=${split_branch[0]}
           package=${split_branch[1]}
           echo "$path $package"
-          echo '::set-output name=slnpath::$(echo $slnpath)'
+          echo '::set-output name=slnpath::$(echo $path)'
           echo '::set-output name=package::$(echo $package)'
 
 
