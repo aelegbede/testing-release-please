@@ -26,7 +26,7 @@ jobs:
       - uses: google-github-actions/release-please-action@v3
         id: release
         with:
-          release-type: node
+          release-type: python
           package-name: ${{ steps.path.output.package }} 
           path: 5510
           default-branch: ${{ github.ref_name }}
