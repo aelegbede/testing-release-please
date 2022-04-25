@@ -1,7 +1,7 @@
 <!---
 x-release-please-start-version
 -->
-2.0.2
+1.0.0
 <!---
 x-release-please-end
 -->
