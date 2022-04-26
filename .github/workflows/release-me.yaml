@@ -46,7 +46,6 @@ jobs:
             echo '::set-output name=release-type::helm'
           elif [[ "$file" == *package.json ]]; 
           then
-            echo "entered"
             echo '::set-output name=release-type::node'
           elif [[ "$file" == *version.rb ]]; 
           then
