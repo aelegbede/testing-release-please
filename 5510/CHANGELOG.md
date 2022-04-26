@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.0.2](https://github.com/aelegbede/testing-release-please/compare/workflow-v1.0.1...workflow-v1.0.2) (2022-04-26)
+
+
+### Bug Fixes
+
+* change version number ([8c8cfbb](https://github.com/aelegbede/testing-release-please/commit/8c8cfbb3bf6b4f73eeeea74443510954bf32cc81))
+
 ### [1.0.1](https://github.com/aelegbede/testing-release-please/compare/workflow-v1.0.0...workflow-v1.0.1) (2022-04-26)
 
 
