@@ -53,7 +53,7 @@ jobs:
           elif [[ "$file" ==  *var.tf ]]; 
           then
             echo '::set-output name=release-type::terraform-module'
-          elif [[ "$file" ==  *setup.py ] || [ "$file" ==  *version.py ]]; 
+          elif [[ "$file" ==  *setup.py ]] || [[ "$file" ==  *version.py ]]; 
           then
             echo '::set-output name=release-type::python'
           else
