@@ -1,6 +1,6 @@
 {
   "name": "simple-nodejs-server",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Simple Node.js Server",
   "main": "index.js",
   "scripts": {

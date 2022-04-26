@@ -1,10 +1,10 @@
 ## Simple Node.js Server
 
-"x-release-please-version" : 1.0.0  ${version}	version  17 
+"x-release-please-version" : 1.0.1  ${version}	version  17 
 
-x-release-please-version : 1.0.0  ${version}	version  17 
+x-release-please-version : 1.0.1  ${version}	version  17 
 
-'x-release-please-version' : 1.0.0  ${version}	version  17 
+'x-release-please-version' : 1.0.1  ${version}	version  17 
 
 x-release-please-major : 1 
 
