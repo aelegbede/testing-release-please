@@ -26,7 +26,7 @@ jobs:
           echo "::set-output name=package::$string"
           file="simple"
           cd $id
-          for item in mix.exs go.mod Chart.yaml package.json composer.json version.rb var.tf
+          for item in mix.exs go.mod Chart.yaml package.json composer.json version.rb var.tf setup.py version.py
           do
             echo "$item"
             MYVAR=`find  . -maxdepth 1 -type f -name "$item"  -print`
@@ -53,6 +53,9 @@ jobs:
           elif [[ "$file" ==  *var.tf ]]; 
           then
             echo '::set-output name=release-type::terraform-module'
+          elif [[ "$file" ==  *setup.py ] || [ "$file" ==  *version.py ]]; 
+          then
+            echo '::set-output name=release-type::python'
           else
             echo '::set-output name=release-type::simple'
           fi
@@ -60,7 +63,7 @@ jobs:
         id: release
         with:
          release-type: ${{ steps.path.outputs.release-type }}
-         package-name: ${{ steps.path.outputs.package }} 
+         package-name:  "release_${{ steps.path.outputs.path }}-${{ steps.path.outputs.package }}"
          path: ${{ steps.path.outputs.path }}
          default-branch: ${{ github.ref_name }}
          monorepo-tags: true 
