@@ -26,9 +26,8 @@ jobs:
           echo "::set-output name=package::$string"
           file="simple"
           cd $id
-          for item in mix.exs go.mod Chart.yaml package.json composer.json version.rb var.tf setup.py version.py
+          for item in mix.exs go.mod Chart.yaml package.json composer.json version.rb var.tf setup.py version.txt
           do
-            echo "$item"
             MYVAR=`find  . -maxdepth 1 -type f -name "$item"  -print`
             echo "$MYVAR"
             if [[ -n "$MYVAR" ]]; then
@@ -53,7 +52,7 @@ jobs:
           elif [[ "$file" ==  *var.tf ]]; 
           then
             echo '::set-output name=release-type::terraform-module'
-          elif [[ "$file" ==  *setup.py ]] || [[ "$file" ==  *version.py ]]; 
+          elif [[ "$file" ==  *setup.py ]] || [[ "$file" ==  *version.txt ]]; 
           then
             echo '::set-output name=release-type::python'
           else
