@@ -10,7 +10,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-
       - name: Checkout
         uses: actions/checkout@v2
         with:
@@ -58,13 +57,16 @@ jobs:
           else
             echo '::set-output name=release-type::simple'
           fi
+          
       - uses: google-github-actions/release-please-action@v3
         id: release
         with:
+         token: ${{ secrets.GITHUB_TOKEN }}
          release-type: ${{ steps.path.outputs.release-type }}
-         package-name:  "release_${{ steps.path.outputs.path }}-${{ steps.path.outputs.package }}"
+         package-name:  "release_${{ steps.path.outputs.path }}-${{ steps.path.outputs.package }}"
          path: ${{ steps.path.outputs.path }}
          default-branch: ${{ github.ref_name }}
+         changelog-types: '[{"type":"feat","section":"Features","hidden":false},{"type":"fix","section":"Bug Fixes","hidden":false},{"type":"chore","section":"Miscellaneous","hidden":false}]'
          monorepo-tags: true 
          extra-files: |
-          version.txt
+          version.md
