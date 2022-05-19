@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.2.0](https://github.com/aelegbede/testing-release-please/compare/release_5510-workflow-v0.1.0...release_5510-workflow-v0.2.0) (2022-05-19)
+
+
+### ⚠ BREAKING CHANGES
+
+* Changed repo to Terraform
+
+### Features
+
+* Changed repo to Terraform ([346e6d3](https://github.com/aelegbede/testing-release-please/commit/346e6d3b5f483bfc96e717e9a6293fa7612c7250))
+
 ## 0.1.0 (2022-04-29)
 
 
