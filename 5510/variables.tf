@@ -14,7 +14,7 @@ variable "access_key" {
 }
 
 
-variable "project_name" {
+variable "roject_name" {
   description = "Name of the project."
   type        = string
 }
