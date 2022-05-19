@@ -5,7 +5,7 @@ locals {
 
 resource "aws_s3_bucket" "tfstate" {
   bucket        = "${local.name_prefix}-tfstate-${random_id.random.hex}"
-  force_destroy = var.force_destroy
+  
 
   tags = {
     Project     = var.project_name
