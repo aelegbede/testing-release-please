@@ -1,6 +1,6 @@
 
 locals {
-    name_prefix = "${var.project_name}-${var.application_name}"
+    name_prefix = "${var.roject_name}-${var.application_name}"
 }
 
 resource "aws_s3_bucket" "tfstate" {
