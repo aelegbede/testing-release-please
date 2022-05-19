@@ -1,0 +1,76 @@
+name: "Terraform"
+
+on:
+  push:
+    paths:
+      - '**.tf'
+      - '**.tfvars'
+
+
+jobs:
+  terraform:
+    name: "Terraform"
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Exist if it's a solution branch
+        id:   vars
+        run: |
+            if [[ ! ${{ github.ref_name }} =~ [0-9]+-* ]]; then
+              echo "The branch name doesn't follow a solution branch name format"
+              exit 1
+            else
+              IFS='-' read -r id string <<< "${{ github.ref_name }}"
+              echo "entered"
+              backend="${string}_backend_config"
+              echo "::set-output name=secret::$string"
+              echo "::set-output name=backend::$backend"
+              echo "::set-output name=path::$id"
+            fi
+            
+      - name: Checkout
+        uses: actions/checkout@v3
+
+
+      - name: create env variable
+        run: |
+            echo "${{ steps.vars.outputs.secret }}"
+            touch terraform.tfvars
+            touch backend.tfvars
+            echo -e '${{ secrets[steps.vars.outputs.backend] }}' >> backend.tfvars
+            echo -e '${{ secrets[steps.vars.outputs.secret] }}' >> terraform.tfvars
+            cat backend.tfvars
+        working-directory: ${{ steps.vars.outputs.path }}
+            
+
+      - name: check if variable exist
+        run: |
+            cat terraform.tfvars
+        working-directory: ${{ steps.vars.outputs.path }}
+
+
+      - name: Set Up Terrform
+        uses: hashicorp/setup-terraform@v2
+ 
+      - name: Terraform Init
+        id: Init
+        run: terraform init -backend-config="backend.tfvars" -no-color
+        working-directory: ${{ steps.vars.outputs.path }}
+
+
+      - name: Terraform Validate
+        id: validate
+        run: terraform validate  -no-color
+        working-directory: ${{ steps.vars.outputs.path }}
+
+
+      - name: Terraform Plan
+        id: plan
+        run: terraform plan  -no-color -input=false
+        continue-on-error: false
+        working-directory: ${{ steps.vars.outputs.path }}
+
+        
+      - name: Terraform Apply
+        run: terraform apply    -auto-approve -input=false
+        working-directory: ${{ steps.vars.outputs.path }}
