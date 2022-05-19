@@ -8,7 +8,7 @@ resource "aws_s3_bucket" "tfstate" {
   
 
   tags = {
-    Project     = var.project_name
+    Project     = var.roject_name
     Application = var.application_name
   }
 
